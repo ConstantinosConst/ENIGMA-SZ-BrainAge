@@ -138,7 +138,6 @@ model.fits.brainAge(males,"males_raw_out.csv")
 model.fits.brainAge(females,"females_raw_out.csv")
 
 
-
 model.fits.brainAge.dx(males,"males_raw_out.csv")
 model.fits.brainAge.dx(females,"females_raw_out.csv")
 
@@ -312,9 +311,8 @@ for (i in c("LENGTH_OF_ILLNESS","AO","SANS_GLOBAL","SAPS_GLOBAL","PANSS_TOTAL","
 
 # BA diff between AP in SCZ only
 cat('model AP\n')
-
 if ("MEDICATION" %in% names(data_SCZ) & length(table(data_SCZ$MEDICATION))>1){
-    form <- as.formula(paste("devAge~as.factor(MEDICATION)+Age+Age2+"))
+    form <- as.formula(paste("devAge~as.factor(MEDICATION)+Age+Age2"))
     out=lm(formula = form, data = data_SCZ)
   } else {
     out=lm(devAge ~ as.factor(MEDICATION)+Age+Age2, data = data_SCZ)
@@ -378,7 +376,6 @@ if ("HAND" %in% names(data) & length(table(data$HAND))>1){
     
     # BA diff between AP in SCZ only
     cat('model H AP\n')
-    
     if ("MEDICATION" %in% names(data_SCZ) & length(table(data_SCZ$MEDICATION))>1){
         form <- as.formula(paste("devAge~as.factor(MEDICATION)+as.factor(HAND)+Age+Age2"))
         out=lm(formula = form, data = data_SCZ)
